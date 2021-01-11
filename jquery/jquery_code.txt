@@ -1,0 +1,440 @@
+ 
+// event click
+/*
+$(document).ready(function()  //عشان يتنفذ بعد ما الفحة تحمل 
+{
+    $("button").click(function()
+   {
+       $("p").css("color","red")    // هنا بيعمل تغيير للعنصر لما اضغط عالزرار
+    })
+    
+});
+------------------------------------------------------------------------------------------------------------------
+*/
+
+
+//event doublle click
+/*
+$(document).ready(function()
+{
+   $("button").dblclick(function()
+ {
+      $("p").css("color","red")               
+ }) 
+    
+});
+
+
+
+//mouthenter & mouthleave
+$(document).ready(function()
+{
+    $("button").mouseenter(function()    //لما اروح للعنصر بالماوس
+    {
+        $("button").css("color","blue")    //"button" = this
+        $("p").css("color","#0f0")
+    })
+    $("button").mouseleave(function()    //  لما ابعد عن العنصر بالماوس
+    {
+        $("p").css("color","red")
+    })
+})
+
+*/
+
+
+//                 HOVER
+
+/*
+$(document).ready(function()
+{
+    $("button").hover(function()    
+    {
+       $("this").css("color","#0f0");
+       $("p").css("color","#080");
+    }, 
+    function()
+     {
+       $("this").css("color","#f00");
+       $("p").css("color","#00f");     
+     });       
+});
+*/
+/*
+$(document).ready(function()
+                 
+{
+    $("button").click(function()
+    {
+        $("p").css("color","red")
+    });
+    $("button").dblclick(function()
+    {
+       $("p").css("color","black")
+    });
+});
+
+*/
+//-------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+//         jquery effects -   hide بيخفي العنصر    /      show بيظهر العنصر    /     toggle بيبدل بينهم
+
+// hide & show
+/*
+$(document).ready(function()
+                 {
+    $("button").mouseover(function()
+                         {
+        $("p").hide();
+    });
+    
+    $("button").mouseleave(function()
+                          {
+        $("p").show();
+    })
+});
+*/
+
+
+/*
+$(document).ready(function()
+                 {
+    $("button").click(function()
+                      {
+        $("p").hide(2000,function() //داخل الهايد بحط سرعة العنصر اثناء الاختفاء وومكن احط فانكشن تظهرلي رسالة تانة 
+                   {
+            $("h3").show();
+        });
+    });
+});
+*/
+//***************************************************************************************************
+
+
+                                     
+                                     // effects  fade in / fade out /fade toggel / fade to 
+
+
+// fade in -------------    (like show (opacity)) -بتظهر العنصر المخفي بس الميزة ان بعمل اوباسيتي  ولازم العنصر يكون مختفي الاول    
+
+/*$(document).ready(function()
+                 {
+    $("button").click(function()
+                      {
+        $("div").fadeInt(2000,function()
+                       {
+            $("span").fadeIn()
+            
+        });
+        
+    });
+    
+});
+*/
+
+//fade out ---( look like hide )         لازم العنصر يكون ظااهر عشن تعرف تخفيه هي زي الهيدن 
+
+/*
+$(document).ready(function()
+                 {
+    $("button").click(function()
+                      {
+        $("div").fadeOut(2000,function()
+                       {
+            $("span").fadeOut()
+            
+        });
+        
+    });
+    
+});
+
+*/
+
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+           //     Effects - SlideDown / SlideUp / SlideToggle
+// لازم العنصر اللي هعمله اسلايد داون   يكون مخفي 
+/*
+$(document).ready(function()
+                 {
+   $(".open").click(function()
+                 {
+       $(".box").slideDown()
+   });
+});
+
+
+
+//    SlideUp           لازم العنصر اللي هعمله اسلايد اب يكون ظاهر
+
+$(document).ready(function()
+                 {
+   $(".open").click(function()
+                 {
+       $(".box").slideUp()
+   });
+});
+
+
+
+// SlideToggle   لو العنصر مخفي التوجل هتظهره لو العنصر ظاهر التوجل هتخفيه 
+
+$(document).ready(function()
+                 {
+   $(".open").click(function()
+                 {
+       $(".box").slideToggle()
+   });
+});
+
+*/
+
+/*
+
+$(document).ready(function()
+                 {
+    $(".cricle1").click(function()
+                     {
+        $(".cricle").fadeIn(2000)
+    });
+});
+
+$(document).ready(function()
+                 {
+   $(".square1").click(function()
+                      {
+       $(".square").slideDown(3000)
+   }) ;
+});
+
+*/
+
+//*************************************************************************************************************************
+                                                   //effects   animation
+/*
+//syntax of animate
+
+$(document).ready(function()
+                 {
+   $("elemnt").animate({property},speed,feadback()) 
+});
+*/
+  
+
+/*
+$(document).ready(function()                                   $(document).ready(function()
+                                                            
+{                                                           {
+    $("div").slideUp(1000)            =                           var div=$("div")                                                                 
+    $("div").slideDown(1000)          =                           div.slideUp(1000) 
+                                      =                           div.slideDown(1000)
+    $("div").fadeOut(1000)            =                           div.fadeOut(1000)                                  
+    $("div").fadein(1000)             =                           div.fadein(1000)                                  
+});                                                          });
+
+*/
+
+
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+                                                            // - Effects - Chain
+/*
+$(document).ready(function()
+                 {
+   $("div")
+    
+    .slideUp(2000)
+    .slideDown(1000)
+    .fadeOut(2000)
+    .fadeIn(1000)
+    .hide(2000)
+    .show(1000)
+    .animate({width:'200',height:'120'},1000)
+});
+*/
+
+
+//***********************************************************************************************************************************************
+
+
+
+                //   Html - Get / Set Elements And Attributes
+
+
+
+/*
+
+$(document).ready(function()
+                 {
+    $("button").click(function()
+                     {
+       $("div").text($("input").val()); 
+        alert("you have wrote:" + $("input").val());
+    });
+});
+*/
+//************************************************************************************************************************************
+ 
+
+
+/*
+                                                       
+شرح اضافة عنصر للصفحة و كل ما يخص عناصر الاضافة
+append()        بيضيف الحاجة اخر العنصر 
+prepend()       بيضيف الحاجة اول العنصر 
+before()        divبتحط العنصر قبل ال
+after()         divبتحط العنصر بعد ال
+appendTo()
+prependTo()
+
+*/
+
+//append()        بيضيف الحاجة اخر العنصر 
+/*
+$(document).ready(function()
+                 {
+   $("div").append("  hello") 
+});
+                  
+
+//prepend()       بيضيف الحاجة اول العنصر
+
+$(document).ready(function()
+                 {
+   $("div").prepend("hello  ") 
+});
+
+
+//before()        divبتحط العنصر قبل ال
+
+$(document).ready(function()
+                 {
+   $("div").before("  hello") 
+});
+
+// after()         divبتحط العنصر بعد ال
+
+$(document).ready(function()
+                 {
+   $("div").after("  hello") 
+});
+
+/*
+
+$(document).ready(function()
+                 {
+   $("hello").appendTo("div");
+});
+
+
+$(document).ready(function()
+                 {
+ //  $("hello").prependTo("div");
+});
+
+*/
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+/*
+
+شرح كيفية إضافة كلاس و حذف كلاس و التبديل بينهم كاملا و شرح كيفية التعامل مع الكلاسات
+addClass()
+removeClass()
+toggleClass()
+*/
+
+
+/*
+$(document).ready(function()
+                 {
+   $("p").click(function()
+                    {
+      $("p").addClass("custom br")
+       
+       });
+       
+    $("div").click(function()
+                     {
+           $("div").toggleClass("test mo")
+    });
+});
+*/
+
+
+
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+/*
+$(document).ready(function()
+                 {
+    $("button").click(function()
+                     {
+        var color=$("input").val();
+        $("p").css("color".color)
+        
+    });
+});
+
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//       [ jQuery In Arabic ] #15 - Html - Dimensions      ("الابعاد")
+
+/*
+$(document).ready(function()
+                 {
+   var width =$(document).width();
+    console.log(width);
+    
+    if(width==1000){
+        console.log("you have abig screen");
+    }
+    else
+    {
+        console.log("sorry :(you dont have abig screen");
+    }
+});
+
+************************************************************************************************************************
+*/
+/*
+$(document).ready(function()
+ {
+    $(".dim").click(function()
+                   {
+        var width=$(".dim").width("+="+ 50);        // هيزود 50 div هنا كل ما ادوس عالل 
+        console.log(width);
+    });
+});
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

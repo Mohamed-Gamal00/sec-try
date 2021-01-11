@@ -1,0 +1,1322 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            *{
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            body{
+               overflow-x: hidden;
+               font-family: 'Poppins',sans-serif; 
+            }
+           .header{
+                display: none;
+            }
+            .Navbar{
+                width: 100%;
+                margin: 0;
+                padding: 5px;
+                display: flex;
+                font-size: 20px;
+            }
+            .Navbar .dark{
+                width: 15%;
+                align-items: center;
+                display: flex;
+                justify-content: center;
+                margin-top: 20px;
+            }
+            .Navbar::before{
+                content: '';
+                position: absolute;
+                top: -19%;
+                left: 50%;
+                background: #e91e63;
+                width: 60vh;
+                height: 10vh;
+                border-radius: 50%;
+                transform-origin: top;
+                transform: translate(-50%) scale(4);
+                z-index: -1;
+                border-bottom: 1px solid #DDB65DFF;
+            }
+            .logo{
+                width: 10%;
+                align-items: center;
+                display: flex;
+                justify-content: center;
+                z-index: 5; 
+                border-radius: 100px;
+            }
+            .logo img{
+                width: 70px;
+                height: 70px;
+                border: 1px solid #DDB65DFF;
+                border-radius: 100px;
+            }
+            .nav{
+                display: flex;
+                justify-content: center;
+                width: 75%;
+                z-index: 5;
+            }
+            .nav ul{
+                display: flex;
+                grid-gap: 3px;
+                justify-content: center;
+                align-items: center;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.25);
+                border-radius: 70px;
+                list-style: none;
+                padding: 0;
+                color: white;
+                margin-top: 20px;
+            }
+            .nav ul li{
+                padding: 20px;
+                padding-top: 13px;
+                padding-bottom: 14px;
+                margin-left: 0px;
+                border-radius: 50px;
+                transition: .6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+                transition: color 0.6s ease;
+            }
+            .nav ul label a{
+                text-decoration: none;
+                color: white;
+                font-weight: bold;
+            }
+            .nav ul li:hover, .active{
+                background: linear-gradient(45deg,#05abe0 0%,#8200f4 100%);
+                color: whitesmoke;
+                font-weight: bold;
+            }
+            .nav ul li:hover a{
+                color: whitesmoke;
+                font-weight: bold;
+            }
+            .check{
+                position: relative;
+                display: block;
+                width: 40px;
+                height: 20px;
+                background: blue;
+                cursor: pointer;
+                border-radius: 20px;
+                overflow: hidden;
+                transition: ease-in .5s;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.25);
+            }
+            input[type="checkbox"]{
+                display:none;
+            }
+            input[type="checkbox"]:checked ~ .check{
+                background: black;
+                box-shadow: 0 0 0 4000px black;
+                z-index: -1;
+            }
+            .check:before{
+                content: '';
+                position: absolute;
+                top: 2px;
+                left: 2px;
+                background: lightgray;
+                width: 16px;
+                height:16px;
+                border-radius: 50%;
+                transition: .5s;
+            }
+            input[type="checkbox"]:checked ~ .check:before{
+                transform: translateX(-50px);
+            }
+            .check:after{
+                content: '';
+                position: absolute;
+                top: 2px;
+                right: 2px;
+                background: lightgray;
+                width: 16px;
+                height:16px;
+                border-radius: 50%;
+                transition: .5s;
+                transform: translateX(50px);
+            }
+            input[type="checkbox"]:checked ~ .check:after{
+                transform: translateX(0px);
+            }
+            .container{
+                width: 100%;
+                height: 500px;
+                margin: 80px auto;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .container .F_background{
+                width:800px;
+                height: 500px;
+                position: relative;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-top: 380px;
+            }
+            .text{
+                width: 100%;
+                position: absolute;
+                padding-left: 20px;
+                border-top-left-radius: 25px;
+                border-top-right-radius: 25px;
+                color: whitesmoke;
+                letter-spacing: 1px;
+                line-height: 30px;
+                background: rgba(0,0,0,0.3);
+            }
+            .text h2 .word_change{
+                color: whitesmoke;
+                font-size: 30px;
+            }
+            .content{
+                position: absolute;
+                bottom: 25.5%;
+            }
+            .content .img img{
+                width: 800px;
+                height: 500px;
+                border-radius: 25px;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.25);
+            }
+            .learnmore{
+                width: 150px;
+                height: 170px;
+                position: absolute;
+                top: 80%;
+                left: 42%;
+                overflow: hidden;
+                transition: all .5s;
+            }
+            .learnmore h3{
+                padding: 5px;
+                color: whitesmoke;
+                transition: all .8s;
+                position: absolute;
+                top: 16%;
+                left: 20%;
+                transform: translate(-137%,0);
+            }
+            .learnmore:hover h3{
+                 transform: translate(0,0);
+            }
+            .learnmore a{
+                color: whitesmoke;
+                text-decoration: none;
+                font-size: 25px;
+                padding: 5px;
+                position: absolute;
+                margin-bottom:10px;
+                border-radius: 5px;
+                transition: all .5s;
+                background: rgba(0,0,0,0.7);
+            }
+            .learnmore a:hover {
+                transform: scale(1.1);
+            }
+            marquee {
+                margin-left: 20.5%;
+                margin-top: 30px;
+                margin-bottom: 30px;
+                width: 800px;
+                
+            }
+            marquee h3{
+                width: 100%;
+                font-size: 50px;
+                text-align: center;
+                font-family: 'Poppins',sans-serif;
+                background: -webkit-linear-gradient(right, #56d8e4, #9f01ea, #56d8e4, #9f01ea);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                font-weight: 700;
+            }
+            .slider_img{
+                width: 800px;
+                margin: auto;
+            }
+            .slider_img img{
+                border-radius: 25px;
+            }
+            .second_container{
+                width: 62%;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.25);
+                margin: 50px auto;
+                padding: 5px;
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                border-radius: 5px;
+            }
+            .srsh_box input{
+                width: 200px;
+                height: 50px;
+                text-align: center;
+                background: none;
+                border: none;
+                outline: none;
+                border-bottom: 1px solid #DDB65DFF;
+                color: #DDB65DFF;
+            }
+            .fas.fa-search{
+                color: #DDB65DFF;
+                position: relative;
+                left:37%;
+                bottom:66%
+            }
+            .dropdown{
+                width: 200px;
+                height: 50px;
+                text-align: center;
+                margin: 2px;
+            }
+
+            .dropdown select{
+                width: 200px;
+                height: 50px;
+                background: none;
+                border: none;
+                outline: none;
+                padding-left: 10px;
+                border-bottom: 1px solid #DDB65DFF;
+                color: #DDB65DFF;
+            }
+            .dropdown select option{
+                color: black;
+            }
+            .check_box {
+                margin: auto;
+                display: flex;
+                padding: 10px;;
+                justify-content: center;
+                font-size: 30px;
+                font-family:cursive;
+                border: 1px solid #DDB65DFF;
+                background: #e91e63;
+                color: whitesmoke;
+                transition: all .5s;
+                outline: none;
+                overflow: hidden;
+                border-radius: 5px;
+            }
+            .check_box:hover {
+               transform: scale(1.1);
+            }
+            .login_form{
+                padding: 10px;
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .form{
+                width: 570px;
+                height: 550px;
+                margin:auto;
+                background: #6bbfb0;
+                display: none;
+                border: 1px solid #DDB65DFF;
+            }
+            .form h2{
+                text-align: center;
+                letter-spacing: 2px;
+                margin-top: 20px;
+                margin-bottom: 40px;
+                font-family:cursive;
+                font-size: 30px;
+                color: whitesmoke;
+            }
+            .form .lablel{
+                display: block;
+                color: whitesmoke;
+                margin-bottom: 6px;
+                font-size: 20px;
+                font-family: cursive;
+            }
+            .form .input{
+                padding: 13px 0px 13px 25px;
+                width: 100%;
+                text-align: center;
+                border-radius: 5px;
+                letter-spacing: 1px;
+                word-wrap: 3px;
+                outline: none;
+                font-size: 15px;
+                color: black;
+                border: none;
+                border-bottom-left-radius: 25px;
+                border-top-right-radius:25px;
+            }
+            .card_grp{
+                display: flex;
+                justify-content: space-between;
+                padding: 5px;
+            }
+            .card_item {
+                width: 48%
+            }
+            .space{
+                margin-bottom: 20px;
+                padding: 7px;
+            }
+            .icon_relative{
+                position: relative;
+            }
+            .icon_relative .fas,
+            .icon_relative .far{
+                position: absolute;
+                bottom: 17px;
+                left: 18px;
+                font-size: 20px;
+                color: goldenrod;
+            }
+            .btn{
+                width: 50%;
+                background-color: #f26666;
+                padding: 10px;
+                color: whitesmoke;
+                text-align: center;
+                font-size: 25px;
+                letter-spacing: 2px;
+                border: none;
+                border-radius: 5px;
+                font-family: cursive;
+                transition: all .5s;
+                margin: 50px auto;
+                cursor: pointer;
+            }
+            .btn:hover{
+                transform: scale(1.1);
+            }
+            .container_of_most_popular_question_button{
+                display: flex;
+                background-color:;
+                justify-content: center;
+                flex-wrap: wrap;
+                margin: 50px auto;
+            }
+            .boton{
+                display: flex;
+                flex-direction: column;
+                position: relative;
+                overflow:hidden;
+                height: 180px;
+            }
+            .boton .h3_button{
+                font-family: cursive;
+                font-size: 25px;
+                width: 250px;
+                margin: auto;
+                margin-top: 90px;
+                text-align: center;
+                color: whitesmoke;
+                background: #6bbfb0;
+                border-radius: 5px;
+                padding: 10px;
+                position: absolute;
+                transition: all .5s;
+                cursor: pointer;
+            }
+            .boton:hover .h3_button{
+                color: whitesmoke;
+                border-radius: 5px;
+            }
+             .boton button{
+                height: 80px;
+                width: 250px;
+                font-size: 30px;
+                border: none;
+                background: -webkit-linear-gradient(right, #56d8e4, #9f01ea, #56d8e4, #9f01ea);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                font-weight: 700;
+            }
+            .slidetoggle{
+                color: whitesmoke;
+                font-family: cursive;
+            }
+             .container_of_question{
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+                margin: 50px auto;
+            }
+            .contain_box{
+                width: 50%;
+                display: flex;
+                justify-content: center;
+                flex-direction: column;
+                display: none;
+                margin:auto;
+                border-radius: 5px;
+                padding: 10px;
+                background: rgba(0,0,0,0.7);
+            }
+            .frist_box{
+                width: 100%;
+                overflow: hidden;
+            }
+            .frist_box .slidetoggle1{
+                padding: 5px;
+                font-size: 25px;
+                text-align: center;
+                position: relative;
+                transition: all .5s;
+                color: #ff652f;
+            }
+            .frist_box .click_now1{
+                position:relative;
+                left: 40% ;
+                color: whitesmoke;
+                cursor: pointer;
+                bottom: 10%;
+                transform: translate(100%);
+                transition: all .8s;
+                font-size: 20px;
+            }
+            .frist_box:hover .click_now1{
+                transform: translate(0,0);
+            }
+            .contain_box .frist_box .hamada{
+                display: none;
+                color: whitesmoke;
+                font-size: 20px;
+                padding: 10px;
+            }
+            .second_boxsecond_box{
+                width: 100%;
+                overflow: hidden;
+            }
+            .second_boxsecond_box .slidetoggle2{
+                padding: 5px;
+                font-size: 25px;
+                text-align: center;
+                position: relative;
+                transition: all .5s;
+                color: #ff652f;
+            }
+            .contain_box .second_boxsecond_box .hamada2{
+                display: none;
+                color: whitesmoke;
+                font-size: 20px;
+                padding: 10px;
+            }
+            .second_boxsecond_box .click_now1{
+                position:relative;
+                left: 40% ;
+                color: whitesmoke;
+                cursor: pointer;
+                bottom: 10%;
+                transform: translate(100%);
+                transition: all .8s;
+                font-size: 20px;
+            }
+            .second_boxsecond_box:hover .click_now1{
+                transform: translate(0,0);
+            }
+            .third_box{
+                width: 100%;
+                overflow: hidden;
+            }
+            .third_box .slidetoggle3{
+                padding: 5px;
+                font-size: 25px;
+                text-align: center;
+                position: relative;
+                transition: all .5s;
+                color: #ff652f;
+            }
+            .contain_box .third_box .hamada3{
+                display: none;
+                color: whitesmoke;
+                font-size: 20px;
+                padding: 10px;
+            }
+
+            .third_box .click_now1{
+                position:relative;
+                left: 40% ;
+                color: whitesmoke;
+                cursor: pointer;
+                bottom: 10%;
+                transform: translate(100%);
+                transition: all .8s;
+                font-size: 20px;
+            }
+            .third_box:hover .click_now1{
+                transform: translate(0,0);
+            }
+            .forth_box{
+                width: 100%;
+                overflow: hidden;
+            }
+            .forth_box .slidetoggle4{
+                padding: 5px;
+                font-size: 25px;
+                text-align: center;
+                position: relative;
+                transition: all .5s;
+                color: #ff652f;
+            }
+            .contain_box .forth_box .hamada4{
+                display: none;
+                color: whitesmoke;
+                font-size: 20px;
+                padding: 10px;
+            }
+            .forth_box .click_now1{
+                 position:relative;
+                left: 40% ;
+                color: whitesmoke;
+                cursor: pointer;
+                bottom: 10%;
+                transform: translate(100%);
+                transition: all .8s;
+                font-size: 20px;
+            }
+            .forth_box:hover .click_now1{
+                transform: translate(0,0);
+                
+            }
+             marquee img{
+                padding: 20px;
+                margin-left: 20px;
+            }
+            .buttons{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 5px;
+                margin-top:20px;
+            }
+            .buttons .pages{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                grid-gap: 10px;
+                margin-top: 20px;
+                padding: 10px;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.25);
+            }
+            .buttons .pages .First, .buttons .pages .Second{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                grid-gap: 10px;
+            }
+            .buttons .pages a{
+                text-decoration: none;
+                padding-top: 0;
+                height: 50px;
+                width: 190px;
+                color: white;
+                font-size: 27px;
+                background: #e91e63;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                text-transform: uppercase;
+            }
+            .Footer{
+                margin-top: 30px;
+                padding: 10px;
+                background-color: black;
+                color: #DDB65DFF;
+                border: 1px solid #DDB65DFF;
+            }
+            .Footer .row{
+                display: flex;
+                padding: 10px;
+                justify-content: center;
+            }
+            .Footer .col-35{
+                padding: 10px;
+                flex: 45%;
+            }
+            .Footer .col-350{
+                flex: 46%;
+                display: flex;
+            }
+            .Footer .col-800{
+                flex: 23%;
+            }
+            .col-30{
+                padding: 10px;
+                flex: 23%;
+            }
+            .col-35 ul{
+                list-style: none;
+            }
+            .col-35 ul li a{
+                text-decoration: none;
+                color: #DDB65DFF;
+                transition: 0.3s;
+                line-height: 25px;
+            }
+            .col-35 ul li a:hover{
+                border-bottom: 1px solid #DDB65DFF;
+            }
+            .col-35 p{
+                color: #DDB65DFF;
+                line-height: 25px;
+            }
+            .col-30 ul{
+                list-style: none;
+            }
+            .col-30 input[type=email]{
+                border: none;
+                border-bottom: 1px solid #DDB65DFF;
+                background-color: black;
+                margin-bottom: 5px;
+                width: 98%;
+            }
+            .col-30 textarea{
+                background-color: black;
+                margin-bottom: 5px;
+                width: 98%;
+                border: 1px solid #DDB65DFF;
+            }
+            .col-30 input[type=submit]{
+                border: none;
+                width: 90%;
+                border-radius: 15px;
+                background-color: #ff652f;
+                color: white;
+                transition: 0.5;
+                font-size: 20px;
+                cursor: pointer;
+                height: 30px;
+            }
+            .col-100 p{
+                color: #DDB65DFF;
+                text-align: center;
+            }
+            .follow{
+                display: flex;
+                grid-gap: 50px;
+                padding: 10px;
+            }
+            .follow a{
+                color: #EEB238FF;
+                font-size: 50px;
+                text-decoration: none;
+            }
+            .col-600 ul{
+                list-style: none;
+                font-size: 20px;
+                color: #DDB65DFF;
+                display: flex;
+            }
+            .col-600 ul li{
+                padding: 10px;
+                padding-top: 0;
+                padding-bottom: 0;
+                border-right: 2px solid #DDB65DFF;
+            }
+            
+            
+            @media screen and (max-width:900px){
+                .Navbar{
+                    display: none;
+                }
+                .header{
+                    width: 100%;
+                    left,right,bottom:0;
+                    display: flex;
+                }
+                .header .row{
+                    width: 100%;
+                }
+                .header .row .nav{
+                    width:7%;
+                    text-align: center;
+                }
+                .Col-70{
+                    width: 7%;
+                    float: left;
+                    margin-top: 60px;
+                    margin-left: 10px;
+                }
+                .header .col-25{
+                    width: 80%;
+                    text-align: center;
+                    color:#DDB65DFF;
+                    font-size: 50px;
+                    line-height: 25px;
+                    margin-top: 5px;
+                }
+               .logo{
+                    width: 100%;
+                    align-items: center;
+                    display: flex;
+                    justify-content: center;
+                    z-index: 5; 
+                    border-radius: 100px;
+                }
+                .logo img{
+                    width: 140px;
+                    height: 140px;
+                    border: 1px solid #DDB65DFF;
+                    border-radius: 100px;
+                }
+                .header .responsive{
+                    list-style: none;
+                }
+                .header nav,.header .col-25{
+                    float: left;
+                }
+                .header .checkbtn{
+                    font-size: 30px;
+                    color: #DDB65DFF;
+                    line-height: 80px;
+                    cursor: pointer;
+                }
+                .header::before{
+                    content: '';
+                    position: absolute;
+                    background:#e91e63;
+                    height: 15vh;
+                    width: 100%;
+                    border-bottom: 1px solid #DDB65DFF;
+                    z-index: -1;
+                  } 
+                .header .row .col-60 nav ul{
+                    background: black;
+                    width: 100%;
+                    top: 150px;
+                    left:-100%;
+                    text-align: center;
+                    transition: all .5s;
+                    position: fixed;
+                    height: 100vh;
+                    list-style: none;
+                    margin-top: 0;
+                    padding-left: 0;
+                    border-bottom: 1px solid #DDB65DFF;
+                    border-top: 1px solid #DDB65DFF;
+                    z-index: 35;
+                }
+                .header .row .col-60 nav ul a{
+                    text-decoration: none;
+                    display: inline-block;
+                    color: #DDB65DFF;
+                    font-size: 20px;  
+                    line-height: 50px;
+                    clear: both;
+                    text-align: center;
+                    width: 100%;
+                    padding: 10px;
+                    transition: .6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+                    transition: color 0.6s ease;
+                }
+               .header .row .col-60 nav ul a:hover{
+                    color: white;
+                }
+                #check:checked ~ ul{
+                    left: 0;
+                }
+                input[type="checkbox"]:checked ~ .check{
+                    background: black;
+                    box-shadow: 0 0 0 10000px black;
+                    z-index: -1;
+                }
+                
+               .header .row .responsive .col-60 nav label i{
+                    margin-top:55px;
+                    font-size: 40px;
+                    color: white;
+                }
+                .container .F_background{
+                    width:95%;
+                    margin-top: 200px;
+                }
+                .content .img img{
+                    width: 100%;
+                }
+                .text{
+                    font-size: 18px;
+                    line-height: 25px;
+                }
+                 .text h2 .word_change{
+                    color: whitesmoke;
+                    font-size: 30px;
+                }
+                .learnmore{
+                    display: none;
+                }
+                marquee{
+                    margin-top: 0;
+                    margin-left: 0;
+                    width:100%;
+                }
+                .marquee h3{
+                    width: 100%;
+                    font-size: 25px;
+                }
+                .slider_img{
+                    width: 95%;
+                }
+                .buttons{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    padding: 5px;
+                    margin-top:20px;
+                }
+                .buttons .pages a{
+                    font-size: 23px;
+                    cursor: pointer;
+                    width: 160px;
+                }
+                .Footer{
+                    margin-top: 20px;
+                } 
+                .Footer .rowing{
+                    display: block;
+                }
+                .Footer .rowing .col-350{
+                    display: flex;
+                    padding: 10px;
+                    justify-content: center;
+                }
+                .Footer .col-600{
+                    display: flex;
+                    justify-content: center;
+                }
+                .Footer .col-600 ul li{
+                    text-align: center;
+                    font-size: 15px;
+                    font-weight: bold;
+                }
+            }
+            
+            @media screen and (max-width:500px){
+                .logo img{
+                    width: 100px;
+                    height: 100px;
+                }
+                .Col-70{
+                    margin-top: 40px;
+                }
+                .header .row .responsive .col-60 nav label i{
+                    margin-top: 36px;
+                    font-size: 30px;
+                }
+                .header .row .col-60 nav ul{
+                    top: 110px; 
+                }
+                .container{
+                    margin: 0 auto;
+                    height: 300px;
+                }
+                .container .F_background{
+                    width:95%;
+                    height:300px;
+                    margin-top: 70px;
+                }
+                .content .img img{
+                    width: 100%;
+                    height: auto;
+                }
+                .text{
+                    font-size: 13px;
+                }
+                .text h2 .word_change{
+                    font-size: 15px;
+                }
+                marquee{
+                    margin-top: 0;
+                    margin-left: 0;
+                    width:100%;
+                }
+                marquee h3{
+                    font-size: 20px;
+                    width: 100%;
+                }
+                .form{
+                    width: 100%;
+                    height:600px;
+                }
+                .card_grp{
+                    flex-direction: column;
+                }
+                .card_item{
+                    width:100%;
+                }
+                .btn{
+                    margin: 20px auto;
+                }
+                .contain_box{
+                    width: 100%;
+                }
+                .buttons .pages{
+                    display: block;
+                }
+                .buttons .pages .First{
+                    margin-bottom: 10px;
+                }
+                .Footer .col-600 ul{
+                    display: block;
+                    justify-content: center;
+                }
+                .Footer .col-600 ul li{
+                    text-align: center;
+                    border: none;
+                    font-size: 13px;
+                }
+                .Footer input[type="submit"]{
+                    font-size: 15px;
+                }
+            }
+        </style>
+        <script src="https://kit.fontawesome.com/26dc5b0721.js" crossoring="anonymous"></script>
+        <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="engine1/style.css" />
+        <script type="text/javascript" src="engine1/jquery.js"></script>
+    </head>
+    <body>
+        <div class="Navbar">
+                <div class="Logo">
+                    <img src="LOGO.PNG">
+                </div>
+                <div class="nav">
+                    <ul>
+                        <li><label><i class="fa fa-home"><a href="../HomePage/HomePage.html" style="padding-left:3px;">HOME</a></i></label></li>
+                        <li><label><i class="fa fa-user"><a href="../AboutUs/Aboutus.html" style="padding-left:3px;">ABOUT US</a></i></label></li>
+                        <li><label><i class="fa fa-envelope"><a href="../ContactUs/ContactUs.html" style="padding-left:3px;">CONTACT US</a></i></label></li>
+                        <li><label><i class="fa fa-heart"><a href="../Love/Love.html" style="padding-left:3px;">LOVE</a></i></label></li>
+                        <li><label><i class="fa fa-user"><a href="../SignIn/Sign%20In.html" style="padding-left:3px;">SIGN IN</a></i></label></li>
+                    </ul>
+                </div>
+            <div class="dark">
+                <label>
+                    <input type="checkbox">
+                    <span class="check"></span>
+                </label>
+            </div>
+         </div> 
+        
+        <div class="header">
+           <div class="row">
+               <ul class="responsive">
+                   <li>
+                      <div class="Col-70">
+                            <label><input type="checkbox">
+                                   <span class="check"></span>
+                            </label>
+                       </div>
+                   </li>
+                   <li>
+                       <div class="col-25">
+                           <div class="Logo">
+                                <img src="LOGO.PNG">
+                            </div>
+                       </div>
+                   </li>
+                   <li>   
+                        <div class="col-60">
+                             <nav>  
+                                <input type="checkbox" id="check">
+                                <label for="check" class="checkbtn">
+                                    <i class="fa fa-bars"></i>
+                                </label>
+                                 
+                                <ul>
+                                    <li><a href="../HomePage/HomePage.html">HOME</a></li>
+                                    <li><a href="../AboutUs/Aboutus.html">ABOUT US</a></li>
+                                    <li><a href="../ContactUs/ContactUs.html">CONTACT US</a></li>
+                                    <li><a href="../Love/Love.html">LOVE</a></li>
+                                    <li><a href="../SignIn/Sign%20In.html">SIGN IN</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                   </li>
+               </ul>
+           </div>
+       </div>
+        
+        <div class="container">
+            <div class="F_background">
+                <div class="content">
+                    <div class="text">
+                    <h2>WE WILL BUY FROM YOU EVEN IF YOU <span class="word_change">DON'T</span> BUY FROM US</h2>
+                    <p>We invite you today to our CARWORLD buying experience!</p>
+                    </div>
+                    <div class="img">
+                        <img src="29.jpg">
+                    </div>
+                    <div class="learnmore">
+                        <a href="../Cars/Cars.html">Learn More</a>
+                        <h3>lets go</h3>
+                    </div>
+                </div>
+            </div>    
+        </div>
+        
+        <marquee>
+            <h3>We are always at your service .</h3>
+        </marquee>
+        
+        <div class="slider_img">
+            <div id="wowslider-container1">
+                <div class="ws_images">
+                    <ul>
+                        <li><img src="car8.jpg" alt="car4" title="car4" id="wows1_0"/></li>
+                        <li><img src="data1/images/25.jpg" alt="25" title="25" id="wows1_1"/></li>
+                        <li><img src="data1/images/29.jpg" alt="29" title="29" id="wows1_2"/></li>
+                        <li><img src="car7.jpg" alt="car1" title="car1" id="wows1_3"/></li>
+                        <li><a href="http://wowslider.net"><img src="data1/images/car2.jpg" alt="html5 slider" title="car2" id="wows1_4"/></a></li>
+                        <li><img src="car6.jpg" alt="car3" title="car3" id="wows1_5"/></li>
+                    </ul>
+                </div>
+                    <div class="ws_bullets">
+                        <div>
+                            <a href="#" title="car4"><span><img src="data1/tooltips/car4.jpg" alt="car4"/>1</span></a>
+                            <a href="#" title="25"><span><img src="data1/tooltips/25.jpg" alt="25"/>2</span></a>
+                            <a href="#" title="29"><span><img src="data1/tooltips/29.jpg" alt="29"/>3</span></a>
+                            <a href="#" title="car1"><span><img src="data1/tooltips/car1.jpg" alt="car1"/>4</span></a>
+                            <a href="#" title="car2"><span><img src="data1/tooltips/car2.jpg" alt="car2"/>5</span></a>
+                            <a href="#" title="car3"><span><img src="data1/tooltips/car3.jpg" alt="car3"/>6</span></a>
+                        </div>
+                    </div>
+                <div class="ws_script" style="position:absolute;left:-99%"><a href="http://wowslider.net">slider html</a> by WOWSlider.com v9.0
+                </div>
+                <div class="ws_shadow"></div>
+            </div>	
+            <script type="text/javascript" src="engine1/wowslider.js"></script>
+            <script type="text/javascript" src="engine1/script.js"></script>
+        </div>
+        
+        <div class="second_container">
+            
+            <div class="srsh_box dropdown">
+                <input type="search" placeholder="type to search" id="search box">
+                <i class="fas fa-search"></i>
+            </div>
+            
+            <div class="dropdown">
+                 <select>
+                     <option>All Brands</option>
+                     <option>BMW</option>
+                     <option>Adui</option>
+                     <option>Honda</option>
+                     <option>Chery</option>
+                     <option>Fiat</option>
+                     <option>BYD</option>
+                     <option>Ford</option>
+                     <option>Geely</option>
+                     <option>Hyundai</option>
+                     <option>Chevrlote</option>
+                 </select>
+            </div>
+            
+            
+            <div class="dropdown">
+                 <select id="select" name="select">
+                     <option>city</option>
+                     <option>Cairo</option>
+                     <option>Alexandria</option>
+                     <option>Gizeh</option>
+                     <option>al-Mansura</option>
+                     <option>Ismailia</option>
+                     <option>Zagazig</option>
+                     <option>Damietta</option>
+                     <option>Beni Suef</option>
+                     <option>Qena</option>
+                     <option>Fayyum</option>
+                     <option>6th of October</option>
+                     <option>Marsa Matruh</option>
+                     <option>Kafr el-Sheikh</option>  
+                 </select>
+            </div>
+            
+            <div class="dropdown">
+                 <select id="select" name="select">
+                     <option>New</option>
+                     <option>Old</option>
+                 </select>
+            </div>
+            
+        </div>
+        
+        
+        <button class="check_box">check now</button>        
+        
+        <div class="login_form">
+            <div class="form">
+                <h2>payment Getway</h2>
+                <div class="card space icon_relative">
+                    <label class="lablel"> card holder:</label>
+                    <input type="text" class="input" name="card_holder" placeholder="coding market">
+                    <i class="fas fa-user"></i>
+                </div>
+                
+                <div class="card space icon_relative">
+                    <label class="lablel"> card number:</label>
+                    <input type="text" class="input" name="number" placeholder="card number">
+                    <i class="far fa-credit-card"></i>
+                </div>
+                
+                <div class="card_grp space">
+                    <div class="card_item icon_relative">
+                        <label class="lablel">Expiry date:</label>
+                        <input type="text" class="input" name="expiry_date" placeholder="00/00">
+                        <i class="fas fa-calendar-minus"></i>
+                    </div>
+                    
+                    <div class="card_item icon_relative">
+                        <label class="lablel">Expiry CVC:</label>
+                        <input type="text" class="input" name="expiry_date" placeholder="000">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                </div>
+                
+                <div class="btn">
+                     PAY NOW
+                </div>
+            </div>
+        </div>
+        
+        <div class="container_of_most_popular_question_button">
+            <div class="boton">
+                <button>most popular question</button>
+                <h3 class="h3_button">click to see most popular question</h3>
+            </div>
+        </div>
+        
+        <div class="container_of_question">
+            <div class="contain_box">
+                <div class="frist_box">
+                    <h5 class="slidetoggle slidetoggle1">What are the requirements to rent a car?</h5>
+                    
+                    <h5 class="click_now1">click to know</h5>
+                    
+                    <span class="hamada">
+                        <h4>*To reserve your car, all you need is a credit card. On receiving the car, you will need:</h4>
+                        <ul>
+                            <li>Your voucher / eVoucher, to show that you’ve paid for the car.</li>
+                            <li>The main driver’s credit / debit card, with enough available funds for the car’s deposit.</li>
+                            <li>A driver's license is valid for every driver, and has held it for at least 12 months (often 24 months).</li>
+                            <li>Your passport and any other ID the car hire company needs to see.</li>
+                        </ul>
+                    </span>
+                </div>
+                <div class="second_boxsecond_box">
+                     <h5 class="slidetoggle slidetoggle2">How old do I have to be to rent a car?</h5>
+                    
+                     <h5 class="click_now1">click to know</h5>
+                    
+                     <span class="hamada2">For most car hire companies, the age requirement is between 21 and 70 years old. If you’re under 25 or over 70, you might have to pay an additional fee.</span>
+                </div>
+                <div class="third_box">
+                    <h5 class="slidetoggle slidetoggle3">Can I book a hire car for someone else?</h5>
+                    
+                    <h5 class="click_now1">click to know</h5>
+                    
+                    <span class="hamada3">Yes, as long as they meet these requirements. Just fill in their details while you’re making the reservation.</span>
+                </div>
+                <div class="forth_box">
+                    <h5 class="slidetoggle slidetoggle4">How do I find the cheapest car hire deal?</h5>
+                    
+                    <h5 class="click_now1">click to know</h5>
+                    
+                    <span class="hamada4">We work with all the major international car hire brands (and lots of smaller local companies) to bring you a huge choice of cars at the very best prices. That’s how we can find you cheap car hire deals at over 60,000 locations worldwide. To compare prices and find your ideal car at an unbeatable price, just use our search form.</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="container_marquee">
+            <marquee>
+                <img src="ford-logo.png" width="100" height="100">
+                <img src="bmw-logo.png" width="100" height="100">
+                <img src="chevrolet.png" width="100" height="100">
+                <img src="chery-logo.png" width="100" height="100">
+                <img src="Honda-logo.png" width="100" height="100">
+                <img src="Hyundai-Logo.png" width="100" height="100">
+                <img src="BYD_Auto_Logo.svg.png" width="100" height="100">
+            </marquee>
+        </div>
+        
+        <div class="buttons">
+            <div class="pages">
+                <div class="First">
+                    <a href="../Apartmets/Apartment.html">Apartments</a>
+                    <a href="../Rooms/Rooms.html">Rooms</a>
+                </div>
+                <div class="Second">
+                    <a href="../Shops/Shop.html">Shops</a>
+                    <a href="../Cars/Cars.html" style="margin-bottom:0;opacity:0.8;cursor: not-allowed;">Cars</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="Footer" style="">
+            <div class="row rowing">
+                <div class="col-35">
+                    <h3>About Egypt</h3>
+                    <p>Egypt is considered to be a regional power in North Africa, the Middle East and the Muslim world, and a middle power worldwide. With one of the largest and most diversified economies in the Middle East, which is projected to become one of the largest in the world in the 21st century, Egypt has the third-largest economy in Africa, the world's 40th-largest economy by nominal GDP, and the 19-largest by PPP. Egypt is a founding member of the United Nations, the Non-Aligned Movement, the Arab League, the African Union, and the Organisation of Islamic Cooperation.</p>
+                </div>
+                <div class="col-350">
+                    <div class="col-35 col-800">
+                        <ul>
+                            <li><h3>Egypt Cities</h3></li>
+                            <li><a href="#">Mansoura.</a></li>
+                            <li><a href="#">Cairo.</a></li>
+                            <li><a href="#">Alexandria.</a></li>
+                            <li><a href="#">Aswan.</a></li>
+                            <li><a href="#">Fayoum.</a></li>
+                            <li><a href="#">Ras Elbar.</a></li>
+                            <li><a href="#">Demitta.</a></li>
+                            <li><a href="#">Tanta.</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-30">
+                        <form>
+                            <ul>
+                                <li><h3>ContactUs</h3></li>
+                                <li><input type="email" class="form-control" style="color=#DDB65DFF" placeholder="Your email address" required ></li>
+                                <li><textarea class="form-control"  style="color=#DDB65DFF" placeholder="Your message" rows=4 required ></textarea></li>
+                                <li><input type="submit" class="form-control submit" value="SEND MESSAGE"></li>
+                            </ul>
+                        </form>
+                    </div>
+                </div>
+              </div>
+                 <div class="row">
+                     <div class="col-100">
+                        <p><span>Follow us and use the following social media platforms to get in contact with us and to share your passion for the brand, products and services of our site</span></p>
+                     </div>  
+                 </div>
+                 <div class="row">
+                     <div class="follow">
+                         <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                         <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                         <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                         <a href="#"><i class="fa fa-youtube" aria-hidden="true"></i></a>
+                     </div>
+                 </div>
+                 <div class="row">
+                    <div class="col-600">
+                         <ul>
+                             <li> خريطة الموقع</li>
+                             <li>سياسة الخصوصية</li>
+                             <li>شروط الاستخدام</li>
+                             <li style="border:none">العلامة التجارية وجميع الحقوق محفوظة ©2020</li>
+                        </ul>
+                     </div>
+                 </div>
+           </div>
+        <script src="jquery/jquery-3.5.1.min.js"></script>
+       <script src="jquery/jquery.js"></script>
+    </body>
+</html>
